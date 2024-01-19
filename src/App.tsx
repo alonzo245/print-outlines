@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import { text } from "./text";
 import Form from "./form";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   const [text, setText] = useState("");
@@ -25,7 +25,7 @@ function App() {
     return splitToPages(processedParagraphs);
   }
 
-  return (
+  const Home = (
     <div className="main">
       {!text ? (
         <Form setText={setText} />
@@ -45,6 +45,15 @@ function App() {
         })
       )}
     </div>
+  );
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={Home} />
+        <Route path="/print-outlines" element={Home} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
