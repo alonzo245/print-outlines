@@ -1,7 +1,7 @@
 {
   "name": "print-outlines",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "https://alonzo245.github.io/print-outlines",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
