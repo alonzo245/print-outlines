@@ -36,6 +36,9 @@ body {
   background-color: #444;
 }
 
+.page .line {
+  font-size: 25px;
+}
 .form {
   margin: 0 auto;
   display: flex;
