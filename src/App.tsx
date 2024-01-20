@@ -5,9 +5,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   const [text, setText] = useState("");
+  const [rowsInPage, setRowsInPage] = useState(65);
+  const [textWeight, setTextWeight] = useState(600);
 
-  function splitToPages(originalArray: any): Array<string[]> {
-    const chunkSize = 65;
+  function splitToPages(
+    originalArray: any,
+    chunkSize: number
+  ): Array<string[]> {
     const splitArrays = Array.from(
       { length: Math.ceil(originalArray.length / chunkSize) },
       (_, index) =>
@@ -22,20 +26,28 @@ function App() {
       const firstFourWords = paragraph.split(/\s+/).slice(0, 4).join("\n\n");
       return firstFourWords;
     });
-    return splitToPages(processedParagraphs);
+    return splitToPages(processedParagraphs, rowsInPage);
   }
 
   const Home = (
     <div className="main">
       {!text ? (
-        <Form setText={setText} />
+        <Form
+          setText={setText}
+          setRowsInPage={setRowsInPage}
+          setTextWeight={setTextWeight}
+        />
       ) : (
         processTextBlock(text).map((page, i) => {
           return (
             <div className="page" key={i}>
               {page.map((line, k) => {
                 return (
-                  <div className="line" key={k}>
+                  <div
+                    className="line"
+                    key={k}
+                    style={{ fontWeight: textWeight ? 600 : 300 }}
+                  >
                     {line}
                   </div>
                 );
